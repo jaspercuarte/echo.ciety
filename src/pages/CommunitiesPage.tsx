@@ -1,17 +1,16 @@
-import React from "react";
-import CreatePost from "../components/CreatePost";
+import CommunityList from "../components/CommunityList";
 
-const CreatePostPage: React.FC = () => {
+const CommunitiesPage = () => {
   return (
-    <div className="md:px-24 md:py-2">
+    <div className="pt-4 pb-16 px-20">
       <div className="p-8 rounded-sm bg-slate-800/80 backdrop-blur-lg border-y md:border border-slate-200 shadow-lg">
         <h2 className="font-mono text-3xl font-semibold italic mb-3 md:mb-1">
-          {">> post.exe"}
+          {">> dir"}
         </h2>
-        <CreatePost />
+        <CommunityList />
       </div>
     </div>
   );
 };
 
-export default CreatePostPage;
+export default CommunitiesPage;

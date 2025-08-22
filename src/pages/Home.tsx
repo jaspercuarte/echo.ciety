@@ -1,7 +1,16 @@
-import React from "react";
+import PostList from "../components/PostList";
 
-const Home: React.FC = () => {
-  return <div>Home</div>;
+const Home = () => {
+  return (
+    <div className="pt-4 pb-16 px-16">
+      <h2 className="font-mono text-3xl font-semibold italic mb-3 md:mb-1">
+        {">> recent_posts"}
+      </h2>
+      <div>
+        <PostList />
+      </div>
+    </div>
+  );
 };
 
 export default Home;
