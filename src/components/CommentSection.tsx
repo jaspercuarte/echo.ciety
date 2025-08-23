@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import supabase from "../supabase-client";
 import CommentItem from "./CommentItem";
+import ScrollToHashElement from "./ScrollToHashElement";
 
 interface Props {
   postId: number;
@@ -23,6 +24,7 @@ export interface Comment {
   author: string;
 }
 
+// inserting comment into sb
 const createComment = async (
   newComment: NewComment,
   postId: number,
@@ -44,6 +46,7 @@ const createComment = async (
   if (error) throw new Error(error.message);
 };
 
+// fetch in order of the recent
 const fetchComments = async (postId: number): Promise<Comment[]> => {
   const { data, error } = await supabase
     .from("comments")
@@ -85,7 +88,7 @@ const CommentSection = ({ postId }: Props) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newCommentText) return;
+    if (!newCommentText.trim()) return;
     mutate({ content: newCommentText, parent_comment_id: null });
     setNewCommentText("");
   };
@@ -125,23 +128,30 @@ const CommentSection = ({ postId }: Props) => {
   const commentTree = comments ? buildCommentTree(comments) : [];
 
   return (
-    <div className="mt-6">
-      <h3 className="text-2xl font-semibold mb-4">Comments</h3>
-      {/* Create Comment Section */}
+    <div className="mt-16">
+      <h3 className="text-2xl font-mono font-semibold mb-4 italic">
+        {">>"} comment_section
+      </h3>
+      {/* {comment section} */}
+      <ScrollToHashElement />
       {user ? (
-        <form onSubmit={handleSubmit} className="mb-4" id="comments">
+        <form
+          onSubmit={handleSubmit}
+          className="mb-4 md:ml-4 font-mono"
+          id="comments"
+        >
           <textarea
             value={newCommentText}
             onChange={(e) => setNewCommentText(e.target.value)}
-            className="w-full border border-white/10 bg-transparent p-2 rounded"
-            placeholder="Write a comment..."
+            className="w-full border border-white/10 bg-transparent p-2 rounded-sm transition-all duration-300 focus:bg-slate-600"
+            placeholder="write_a_comment"
             rows={3}
           />
           <button
             type="submit"
-            className="mt-2 bg-purple-500 text-white px-4 py-2 rounded cursor-pointer"
+            className="px-3 py-2 rounded-sm text-base font-medium bg-slate-900 outline-slate-200 outline scale-100 active:scale-95 active:bg-gray-800 transition-all duration-300 cursor-pointer"
           >
-            {isPending ? "Posting..." : "Post Comment"}
+            {isPending ? "Posting..." : "POST COMMENT"}
           </button>
           {isError && (
             <p className="text-red-500 mt-2">Error posting comment.</p>

@@ -4,7 +4,7 @@ import CommunityDisplay from "../components/CommunityDisplay";
 const CommunityPage = () => {
   const { id } = useParams<{ id: string }>();
   return (
-    <div className="pt-4 pb-16 px-16">
+    <div className="pt-4 pb-16 md:px-16">
       <CommunityDisplay communityId={Number(id)} />
     </div>
   );

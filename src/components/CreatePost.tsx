@@ -56,6 +56,7 @@ const CreatePost = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    if (!title.trim() || !content.trim()) return;
     if (!selectedFile) return;
     mutate({
       post: {

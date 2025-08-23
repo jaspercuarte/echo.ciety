@@ -5,10 +5,15 @@ const ScrollToHashElement = () => {
   const { hash } = useLocation();
 
   useEffect(() => {
-    if (hash === "#comments") {
-      window.scrollTo({
-        top: document.body.scrollHeight,
+    if (!hash) return;
+
+    const id = hash.replace("#", "");
+    const el = document.getElementById(id);
+
+    if (el) {
+      el.scrollIntoView({
         behavior: "smooth",
+        block: id === "votes" ? "center" : "start",
       });
     }
   }, [hash]);

@@ -30,6 +30,7 @@ const CreateCommunity = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name.trim()) return;
     mutate({ name, description });
   };
   return (

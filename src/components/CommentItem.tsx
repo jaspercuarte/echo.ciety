@@ -64,12 +64,14 @@ const CommentItem = ({ comment, postId }: Props) => {
   };
 
   return (
-    <div className="pl-4 border-l border-white/10">
+    <div className="md:ml-4 pl-4 border-l border-white/10 font-mono">
       <div className="mb-2">
         <div className="flex items-center space-x-2">
           {/* Display the commenter's username */}
-          <span className="text-sm font-bold text-blue-400">
+          <span className="text-sm font-bold text-blue-400 italic">
+            {"user/"}
             {comment.author}
+            {">"}
           </span>
           <span className="text-xs text-gray-500">
             {new Date(comment.created_at).toLocaleString()}
@@ -78,25 +80,25 @@ const CommentItem = ({ comment, postId }: Props) => {
         <p className="text-gray-300">{comment.content}</p>
         <button
           onClick={() => setShowReply((prev) => !prev)}
-          className="text-blue-500 text-sm mt-1"
+          className="text-blue-500 font-semibold text-sm mt-1"
         >
           {showReply ? "Cancel" : "Reply"}
         </button>
       </div>
       {showReply && user && (
-        <form onSubmit={handleReplySubmit} className="mb-2">
+        <form onSubmit={handleReplySubmit} className="mb-2 font-mono">
           <textarea
             value={replyText}
             onChange={(e) => setReplyText(e.target.value)}
-            className="w-full border border-white/10 bg-transparent p-2 rounded"
-            placeholder="Write a reply..."
+            className="w-full border border-white/10 bg-transparent p-2 rounded-sm transition-all duration-300 focus:bg-slate-600"
+            placeholder="write_a_reply"
             rows={2}
           />
           <button
             type="submit"
-            className="mt-1 bg-blue-500 text-white px-3 py-1 rounded"
+            className="px-3 py-2 rounded-sm text-base font-medium bg-slate-900 outline-slate-200 outline scale-100 active:scale-95 active:bg-gray-800 transition-all duration-300 cursor-pointer"
           >
-            {isPending ? "Posting..." : "Post Reply"}
+            {isPending ? "Posting..." : "POST REPLY"}
           </button>
           {isError && <p className="text-red-500">Error posting reply.</p>}
         </form>
