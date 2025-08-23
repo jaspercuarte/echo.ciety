@@ -3,7 +3,6 @@ import type { Post } from "./PostList";
 import supabase from "../supabase-client";
 import LikeButton from "./LikeButton";
 import CommentSection from "./CommentSection";
-import { useAuth } from "../context/AuthContext";
 
 interface Props {
   postId: number;
