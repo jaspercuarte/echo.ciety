@@ -67,7 +67,7 @@ const CommentItem = ({ comment, postId }: Props) => {
     <div className="md:ml-4 pl-4 border-l border-white/10 font-mono">
       <div className="mb-2">
         <div className="flex items-center space-x-2">
-          {/* Display the commenter's username */}
+          {/* {display the commenter's username} */}
           <span className="text-sm font-bold text-blue-400 italic">
             {"user/"}
             {comment.author}
@@ -80,9 +80,15 @@ const CommentItem = ({ comment, postId }: Props) => {
         <p className="text-gray-300">{comment.content}</p>
         <button
           onClick={() => setShowReply((prev) => !prev)}
-          className="text-blue-500 font-semibold text-sm mt-1"
+          className={`text-sm mt-1 ${
+            user ? "text-blue-500 font-semibold" : "text-gray-500 font-normal"
+          }`}
         >
-          {showReply ? "Cancel" : "Reply"}
+          {user
+            ? showReply
+              ? "cancel"
+              : "reply"
+            : "must_be_logged_in_to_reply"}
         </button>
       </div>
       {showReply && user && (

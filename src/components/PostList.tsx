@@ -11,6 +11,7 @@ export interface Post {
   user_avatar_url?: string;
   like_count?: number;
   comment_count?: number;
+  user_username: string;
 }
 
 const fetchPosts = async (): Promise<Post[]> => {

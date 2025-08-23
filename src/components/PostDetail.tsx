@@ -35,8 +35,6 @@ const PostDetail = ({ postId }: Props) => {
     return <div> Error: {error.message}</div>;
   }
 
-  const { user } = useAuth();
-
   return (
     <div className="font-mono space-y-6">
       <h2 className="text-3xl font-semibold italic mb-3 md:mb-1">
@@ -46,7 +44,7 @@ const PostDetail = ({ postId }: Props) => {
 
       {/* {i will still fix this part (it register the name of the users name not the original author)} */}
       <div className="italic">
-        user/{user?.user_metadata.user_name || user?.email}
+        user/{data?.user_username}
         {">"}
       </div>
       {data?.image_url && (

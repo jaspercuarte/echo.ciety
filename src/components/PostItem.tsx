@@ -3,7 +3,6 @@ import type { Post } from "./PostList";
 import { FaVoteYea } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa6";
 import Tooltip from "./Tooltip";
-import { useAuth } from "../context/AuthContext";
 
 interface Props {
   post: Post;
@@ -16,8 +15,6 @@ const limitWords = (text: string, count: number) => {
 };
 
 const PostItem = ({ post }: Props) => {
-  const { user } = useAuth();
-
   return (
     <div className="relative group">
       <div className="flex flex-col justify-between h-108 md:w-md w-md rounded-sm p-3 bg-slate-800/80 backdrop-blur-lg border border-slate-200/20 shadow-lg">
@@ -42,10 +39,7 @@ const PostItem = ({ post }: Props) => {
                 <div className="flex flex-col flex-1 font-mono italic ">
                   {/* {i will still fix this part (it register the name of the users name not the original author)} */}
 
-                  <div>
-                    user/{user?.user_metadata.user_name || user?.email}
-                    {">"}
-                  </div>
+                  <div>user/{post.user_username + ">"}</div>
                 </div>
               </Tooltip>
             </div>

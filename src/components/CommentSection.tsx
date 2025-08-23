@@ -159,7 +159,7 @@ const CommentSection = ({ postId }: Props) => {
         </form>
       ) : (
         <p className="mb-4 text-gray-600">
-          You must be logged in to post a comment.
+          you_must_be_logged_in_to_post_a_comment
         </p>
       )}
 
