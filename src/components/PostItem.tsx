@@ -17,14 +17,14 @@ const limitWords = (text: string, count: number) => {
 const PostItem = ({ post }: Props) => {
   return (
     <div className="relative group">
-      <div className="flex flex-col justify-between h-108 md:w-md w-md rounded-sm p-3 bg-slate-800/80 backdrop-blur-lg border border-slate-200/20 shadow-lg">
+      <div className="flex flex-col justify-between h-108 md:w-md md:min-w-md min-w-svw w-fit rounded-sm p-3 bg-slate-800/80 backdrop-blur-lg border border-slate-200/20 shadow-lg">
         <Link
           to={`/post/${post.id}`}
           className="block relative z-10 h-86 p-2 rounded-sm transition-all 
           outline-slate-200/10 hover:bg-slate-900 hover:outline-slate-200/30 outline scale-100 active:scale-95 active:bg-gray-800 duration-300 font-light"
         >
           <div>
-            {/* Header: Avatar and Title */}
+            {/* {header: title & img} */}
             <div className="flex items-center space-x-2 rounded-full outline outline-slate-200/10">
               {post.user_avatar_url ? (
                 <img
@@ -37,8 +37,6 @@ const PostItem = ({ post }: Props) => {
               )}
               <Tooltip text={"description: " + limitWords(post.content, 3)}>
                 <div className="flex flex-col flex-1 font-mono italic ">
-                  {/* {i will still fix this part (it register the name of the users name not the original author)} */}
-
                   <div>user/{post.user_username + ">"}</div>
                 </div>
               </Tooltip>
